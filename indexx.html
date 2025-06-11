@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portfólio de Programação</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Merriweather:wght@700&display=swap');
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+  header {
+    background-color: #1f1f1f;
+    padding: 0.5rem 1rem;
+    border-bottom: 3px solid #9b59b6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  header h1 {
+    margin: 0;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #9b59b6;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .heart-icon, .diamonds-icon {
+    width: 20px;
+    height: 20px;
+    fill: #8a6fc1; /* Tom violeta médio */
+  }
+  nav {
+    display: flex;
+    gap: 2rem;
+  }
+  nav a {
+    color: #af7ac5;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    padding-bottom: 0.25rem;
+    user-select: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  nav a:hover {
+    color: #d2aae3;
+  }
+  nav a.active {
+    color: #d2aae3;
+  }
+  nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: #d2aae3;
+    border-radius: 2px;
+    animation: highlightIn 0.3s ease forwards;
+  }
+  @keyframes highlightIn {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+    to {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+  header .nav-container {
+    display: flex;
+    align-items: center;
+  }
+  main {
+    max-width: 900px;
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
+    text-align: left;
+  }
+  section {
+    margin-bottom: 3rem;
+    text-align: left;
+  }
+  h2 {
+    font-family: 'Merriweather', serif;
+    border-bottom: 2px solid #9b59b6;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  
+  .about p {
+    font-size: 1.1rem;
+    text-align: left;
+  }
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    text-align: center;
+    justify-content: center;  /* Centralizar os itens */
+  }
+  .skill {
+    background-color: #9b59b6;
+    color: #121212;
+    padding: 0.4rem 0.8rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .projects-list {
+    list-style: none;
+    padding: 0;
+  }
+  .project-item {
+    margin-bottom: 1.5rem;
+  }
+  .project-item a {
+    color: #9b59b6;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .project-item a:hover {
+    text-decoration: underline;
+  }
+
+  h2{
+    text-align: center;
+    font-weight: 700;
+  }
+  footer {
+    background-color: #1f1f1f;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    color: #af7ac5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .contact-links a {
+    color: #9b59b6;
+    margin: 0 0.8rem;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .contact-links a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 600px) {
+    header {
+      flex-direction: center;
+      gap: 0.5rem;
+      padding: 1rem;
+    }
+    nav {
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+    header .nav-container {
+      justify-content: center;
+      width: 100%;
+    }
+    header h1 {
+      font-size: 1rem;
+    }
+  }
+
+.portfolio-container {
+    max-width: 720px;
+    width: 90vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 1.5
+   }
+
+  .card { 
+   background-color: var(--black-card-bg);
+   border-radius: 0.75rem;
+   padding: 2.5rem 2rem;
+   color: var(--text-light);
+   box-shadow:
+   0 0 8px 1px var(--border-glow);
+   border: 2px solid var(--purple);
+   position: relative;
+   transition:
+   box-shadow 0.3s ease,
+   transform 0.3s ease;
+   cursor: default;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   min-height: 220px;
+}
+
+.card::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: -6px;
+    bottom: -6px;
+    left: -6px;
+    right: -6px;
+    border-radius: 1rem;
+    background:
+    linear-gradient(45deg, var(--purple), var(--purple-light));
+    filter: blur(8px);
+    opacity: 0.7;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+
+  .card:hover {
+  transform: scale(1.05);
+ box-shadow:
+  0 0 15px 3px var(--border-glow),
+  0 8px 25px rgba(124, 58, 237, 0.5);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  h3 {
+    font-weight: 150;
+    font-size: 2rem;
+    margin: 0 0 0.8rem 0;
+    line-height: 1.1;
+    color: var(--purple-light);
+    text-align: center;
+  }
+ 
+   p {
+    font-weight: 150;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+ @media (max-width: 620px) {
+    .portfolio-container {
+      grid-template-columns: 1fr;
+      width: 95vw;
+    }
+  }
+
+  @media (max-width: 400px) {
+    h3 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+
+    :root {
+    --purple: #7c3aed;
+    --purple-light: #a78bfa;
+    --black-card-bg: #121212;
+    --text-light: #e0dff7;
+    --text-muted: #b0aee0;
+    --border-glow: #8c52ff;
+ }
+ 
+ /* Wrapper container to center animated text horizontally and vertically */
+.animated-text-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh; /* Ajuste altura conforme desejado */
+}
+
+.animated-text{
+  font-size: 24px;
+  color: purple;
+  white-space: nowrap;
+  overflow: hidden;
+  /* Remove border-right (cursor) to disable blinking bar */
+  /* border-right removed */
+  width: 0;
+  animation: typing 3.5s steps(60, end) forwards;
+}
+
+
+/* Após a animação typing, a classe 'ended' removerá o cursor e adicionará reticências */
+.animated-text.ended {
+  border-right: none;
+  width: auto; /* Mostrar todo o texto */
+  padding-right: 1.2em; /* Espaço para reticências */
+  position: relative;
+}
+
+.animated-text.ended::after {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  animation: blink-ellipsis 1.5s step-start infinite; 
+ }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 24ch; } /* Ajuste conforme o comprimento do texto */
+  }
+
+  @keyframes blink-ellipsis {
+    0%, 20% { opacity: 0; }
+    40%, 100% { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="logo" tabindex="0" aria-label="Seu nome">
+    <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 
+               3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 
+               16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 
+               11.54L12 21.35z"/>
+    </svg>
+    Nataly Monique
+  </h1>
+  <div class="nav-container">
+    <nav id="menu">
+      <a href="#about" class="active">Sobre Mim</a>
+      <a href="#projects">Projetos</a>
+      <a href="#contact">Contato</a>
+      <a href="#servicos">Serviços contratáveis</a>
+      <a href="#habilidades">Minhas Habilidades</a>
+    </nav>
+  </div>
+</header>
+
+<br>
+<br>
+
+<div class="animated-text-wrapper">
+  <div class="animated-text" id="animated-text"><code>Codificando ideias .</code></div>
+</div>
+
+<br>
+<br>
+<main>
+  <section id="about" class="about">
+    <h2>Sobre Mim</h2>
+    <p>Sou um programador dedicado com paixão por criar soluções eficientes, elegantes e funcionais. Tenho experiência em [linguagens ou tecnologias]. Estou sempre em busca de aprender mais e contribuir para projetos incríveis.</p>
+  
+  </section>
+
+  <br>
+  <br>
+
+  <section id="habilidades" class="minhas habilidades"></section>
+  <h3> Com o que eu trabalho </h3>
+  <br>
+
+   <div class="skills">
+      <div class="skill">JavaScript</div>
+      <div class="skill">React</div>
+      <div class="skill">Node.js</div>
+      <div class="skill">Python</div>
+      <div class="skill">CSS</div>
+    </div>
+
+    <br>
+
+  <section id="projects" class="projects">
+  <h2>Projetos</h2>
+  <ul class="projects-list">
+    <li class="project-item">
+      <a href="projetos.html" target="_blank" rel="noopener noreferrer">Projeto 1 - Conversor de moedas simples</a>
+      <p>É um projeto simples, um dos meus primeiros. Foi criado usando javascrip, html e css.</p>
+         </a>
+
+    </li>
+    <li class="project-item">
+      <a href="projeto2.html" target="_blank" rel="noopener noreferrer">Projeto 2 - Nome do Projeto</a>
+      <p>Uma breve descrição do que o projeto faz e quais tecnologias foram usadas.</p>
+    </li>
+    <li class="project-item">
+      <a href="projeto3.html" target="_blank" rel="noopener noreferrer">Projeto 3 - Nome do Projeto</a>
+      <p>Uma breve descrição do que o projeto faz e quais tecnologias foram usadas.</p>
+    </li>
+  </ul>
+</section>
+</main>
+<br>
+<br>
+
+<br>
+<section id="servicos" class="portfolio-container" aria-label="Portfolio com quadrados de informação">
+  <h2> Serviços contratáveis</h2>
+
+<article class="card" tabindex="0">
+<h3> Desenvolvimento de sites </h3>
+<p>Desenvolvimento de sites expositivos, lojas online etc..</p>
+</article>
+
+<article class="card" tabindex="0">
+<h3>Design Responsivo</h3>
+<p> Criação de layout responsivo e elegante para dispositivos móveis e desktops.</p>
+</article>
+
+<article class="card" tabindex="0">
+<h3> Automação</h3>
+<p>Implementação de scripts para automação de tarefas repetitivas e otimização de processos.</p>
+</article>
+
+<article class="card" tabindex="0">
+<h3> Aplicativos </h3>
+<p>Construção de aplicativos mobile responsivos.</p>
+</article>
+
+</section>
+ <br>
+ <br>
+
+<footer id="contact">
+  <p>Contato:</p>
+  <div class="contact-links">
+    <a href="mailto:natalymonique18@gmail.com">Email</a>|
+    <a href="https://github.com/Naty-moniss" target="_blank" rel="noopener noreferrer">GitHub</a>|
+    <a href="https://www.linkedin.com/in/nataly-m-b521b4224/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </div>
+  <p>
+    © 2024 Nataly Monique. Todos os direitos reservados.
+    <svg class="diamonds-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="vertical-align:middle; margin-left: 6px;">
+      <path d="M32 2L62 32 32 62 2 32 32 2z"/>
+    </svg>
+  </p>
+</footer>
+
+<script>
+  // Menu active state on click
+  const menu = document.getElementById('menu');
+  const links = menu.querySelectorAll('a');
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      links.forEach(l => l.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      const targetId = e.currentTarget.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+  const logo = document.getElementById('logo');
+  logo.addEventListener('click', () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    links.forEach(l => l.classList.remove('active'));
+    links[0].classList.add('active');
+  });
+
+  const fullText = "Codificando ideias .";
+  const typingSpeed = 80;
+  const pauseBeforeDelete = 1500;
+  const pauseAfterDelete = 700;
+
+  const element = document.getElementById("animated-text");
+
+  let index = 0;
+  let isDeleting = false;
+
+  function typeEffect() {
+    if (!isDeleting) {
+      index++;
+      element.textContent = fullText.substring(0, index);
+      if (index === fullText.length) {
+        setTimeout(() => {
+          isDeleting = true;
+          typeEffect();
+        }, pauseBeforeDelete);
+        return;
+      }
+    } else {
+      index--;
+      element.textContent = fullText.substring(0, index);
+      if (index === 0) {
+        setTimeout(() => {
+          isDeleting = false;
+          typeEffect();
+        }, pauseAfterDelete);
+        return;
+      }
+    }
+    setTimeout(typeEffect, typingSpeed);
+  }
+
+  window.onload = () => {
+    typeEffect();
+  };
+
+  const textElement = document.getElementById('animated-text');
+
+  textElement.addEventListener('animationend', (event) => {
+    if(event.animationName === 'typing') {
+      textElement.classList.add('ended');
+    }
+  });
+</script>
+</body>
+</html>
+
